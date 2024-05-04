@@ -1,0 +1,23 @@
+
+.navbar {
+    width: 100%;
+    background-color: #9883e4; 
+  }
+  
+  .navbar ul {
+    list-style-type:lower-alpha;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .navbar ul li {
+    display: inline;
+    justify-content: center;
+  }
+  
+  .navbar ul li a {
+    display: block;
+    padding: 50px 50px;
+    color: rgb(241, 233, 233);
+    text-decoration: none;
+  }
