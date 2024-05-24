@@ -1,0 +1,17 @@
+[
+    {"id":1,
+    "nombre":"Jujutsu Kaisen Volumen 1",
+    "categoria":"Manga",
+    "descripcion":"Yuji Itadori es un estudiante de preparatoria que tiene una guerza y capacidad física excepcionales, con el hábito de visitar a su abuelo enfermo, internado en un hospital.",
+    "img":"../img/jujutsu-kaisen-1.jpg"},
+    {"id":2,
+    "nombre":"Figura Yuji Itadori Graffitti",
+    "categoria":"Figuras",
+    "descripcion":"Figura de Yuji Itadori 15cm de altura, fabricada por Sega.",
+    "img":"../img/figura-itadori-graffiti.jpg"},
+    {"id":3,
+    "nombre":"Llavero Satoru Gojo",
+    "categoria":"Merch",
+    "descripcion":"Llavero del profesor Satoru Gojo, 6cm de largo.",
+    "img":"../img/llavero-gojo.jpg"}
+]
