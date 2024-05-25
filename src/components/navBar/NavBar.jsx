@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import {link} from 'react-router-dom';
 
 function NavBar() {
   return (
@@ -15,13 +16,9 @@ function NavBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
-            <NavDropdown title="Categorías" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Manga</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-               Figuras
-              </NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Merch</NavDropdown.Item>
-            </NavDropdown>
+            <Nav.Link to='/categoria/manga' as={Link} >Manga</Nav.Link>
+            <Nav.Link to='/categoria/figuras' as={Link} >Figuras</Nav.Link>
+            <Nav.Link to='/categoria/merch' as={Link} >Merch</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
