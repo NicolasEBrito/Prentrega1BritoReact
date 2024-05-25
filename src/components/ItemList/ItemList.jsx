@@ -1,16 +1,4 @@
-/*import Item from '../Item/Item.jsx';
-function ItemList({items}) {
-  return (
-    <>
-      {Items.map(item=><Item item={item} key={item.id}/>)}
-    </>
-  );
-}
-
-
-export default ItemList;
-import React from 'react';*/
-
+import React from 'react'
 const ItemList = ({ item }) => {
   return (
     <div>

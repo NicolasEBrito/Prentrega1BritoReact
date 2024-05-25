@@ -1,38 +1,22 @@
-/*import React, { useState, useEffect } from 'react';
-import ItemList from '../ItemList/ItemList';
-import {useParams} from 'react-router-dom';
-
-
-function ItemListContainer(){
-  const [Item, setItemList] = useState([]);
-  const {id}= useParams()
-
-  useEffect(() => {
-    fetch('/prentrega1react/db/products.json') 
-      .then(res => res.json())
-      .then(res => {
-        setItemList(res);  
-      })
-
-  }, [id])
-  return(
-    <div>
-      <ItemList items={item}/>
-    </div>
-  );
-};*/
 import React, { useEffect, useState } from 'react';
 import ItemList from '../ItemList/ItemList';
 
-const ItemListContainer = () => {
+const ItemListContainer = ({id}) => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch('../db/products.json')
-      .then(response => response.json())
-      .then(data => setItems(data))
-      .catch(error => console.error('Error fetching data:', error));
-  }, []);
+    if (id) {
+      fetch(`/products.json?categoryId=${id}`) //nota: realmente no entendí bien si así puedo filtrar por la categoría de mi json
+        .then(response => response.json())
+        .then(data => setItems(data))
+        .catch(error => console.error('No se pueden obtener los productos', error));
+    } else {
+      fetch('/products.json')
+        .then(response => response.json())
+        .then(data => setItems(data))
+        .catch(error => console.error('No se pueden obtener los productos', error));
+    }
+  }, [id]);
 
   return (
     <div>
@@ -41,7 +25,7 @@ const ItemListContainer = () => {
           <ItemList key={item.id} item={item} />
         ))
       ) : (
-        <p>Loading...</p>
+        <p>No hay productos disponibles.</p>
       )}
     </div>
   );
