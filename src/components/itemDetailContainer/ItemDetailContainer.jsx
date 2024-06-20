@@ -1,21 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import ItemDetail from './ItemDetail';
-
+import React, { useEffect, useState, } from 'react';
+import { useParams } from 'react-router-dom';
+import ItemDetail from '../ItemDetail/ItemDetail.jsx';
+import { getFirestore, getDoc, doc } from 'firebase/firestore';
+import Loader from '../Loader/Loader.jsx'
 const ItemDetailContainer = () => {
-  const [product, setProduct] = useState(null);
+  const {id}= useParams()
+  const [product, setProduct]=useState([])
+  const [loader, setLoader]= useState(true)
+  useEffect(()=>{
 
-  useEffect(() => {
-    fetch('/products.json')
-      .then(response => response.json())
-      .then(data => setProduct(data))
-      .catch(error => console.error("Producto no disponible", error));
-  }, []);
+    (async()=>{
+      setLoader(true)
+      const db= getFirestore()
+      const docRef= doc(db, 'products', id)
+      const docSnap = await getDoc(docRef)
+      setProduct({id:docSnap.id,...docSnap.data()})
+      setLoader(false)
+    })()
+  },[])
 
-  return (
-    <div>
-      {product ? <ItemDetail product={product} /> : <p>En construcción</p>}
-    </div>
-  );
-};
-
+if (loading) return <Loader/>
+return(
+  <div>
+    <ItemDetail product={product}/>
+  </div>
+)}
 export default ItemDetailContainer;
