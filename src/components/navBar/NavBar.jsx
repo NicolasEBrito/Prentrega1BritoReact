@@ -21,7 +21,7 @@ function NavBar() {
             <Nav.Link to='/categoria/merch' as={Link} >Merch</Nav.Link>
             <Nav.Link to='/cart' as={Link} >Carrito</Nav.Link>
             <Nav.Link to='/orders' as={Link} >Órdenes</Nav.Link>
-            <Nav.Link to='/orders' as={Link} ><CartWidget/></Nav.Link>
+            <Nav.Link to='/cart' as={Link} ><CartWidget/></Nav.Link>
           </Nav>
           
         </Navbar.Collapse>

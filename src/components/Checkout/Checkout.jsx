@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-const Checkout = (completeOrder) => {
+const Checkout = ({completeOrder}) => {
     const [nameBuyer, setNameBuyer]=useState("")
     const [telBuyer, setTelBuyer]= useState("")
     const [emailBuyer, setEmailBuyer]=useState("")

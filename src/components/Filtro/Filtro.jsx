@@ -1,7 +1,6 @@
-
 import React, { useState } from 'react';
 
-const Filtro = ({ categorias, handleCategoriaSeleccionada }) => {
+const Filtro = ({ categorías, handleCategoriaSeleccionada }) => {
   const [abierto, setAbierto] = useState(false);
   const [selectedOption, setSelectedOption] = useState('Todos');
 
@@ -15,13 +14,13 @@ const Filtro = ({ categorias, handleCategoriaSeleccionada }) => {
     <div onClick={() => setAbierto(!abierto)}>
       <div>
         {selectedOption}
-        <span className='icon'>&#9660;</span>
+        <span className='icon'>&#9660;</span> 
       </div>
       {abierto && (
         <ul className='opciones'>
-          {categorias.map((categoria) => (
-            <li key={categoria.id} className='opción' onClick={() => handleOpciones(categoria)}>
-              {categoria.nombre}
+          {categorías && categorías.map((nombre) => (
+            <li key={nombre.id} className='opción' onClick={() => handleOpciones(nombre)}>
+              {nombre.nombre}
             </li>
           ))}
         </ul>

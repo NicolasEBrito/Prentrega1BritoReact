@@ -32,7 +32,11 @@ const CartProvider = ({children}) => {
     const borrarCarrito =()=>{
       setCart([])
     }
-
+   /* const completeOrder = async (buyer) => {
+      // Lógica para completar el pedido
+      console.log("Order completed for", buyer);
+      // Puedes agregar aquí la lógica para manejar la orden
+    };*/
   return (
     <CartContext.Provider value={{cart,total, addItemCart, borrarProducto, borrarCarrito, itemsEnCarro}}>
         {children}
