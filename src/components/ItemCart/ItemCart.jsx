@@ -5,7 +5,7 @@ const ItemCart = ({item}) => {
   const {borrarProducto}= useContext(CartContext)
   return (
     <div className='itemCart'>
-   <h3>{item.nombre}</h3>
+   <h3>{item.name}</h3>
    <span>{item.quantity}</span>
    <button onClick={()=> borrarProducto(item.id)}>Borrar</button>
   </div>

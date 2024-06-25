@@ -3,6 +3,7 @@ import CartContext from '../../../context/cart/CartContext';
 import ItemCart from '../ItemCart/ItemCart';
 import { useNavigate } from 'react-router-dom';
 import CarritoVacio from '../CarritoVacio/CarritoVacio';
+import './ItemCartContainer.css'
 
 const ItemCartContainer = () => {
   const { cart, total } = useContext(CartContext);
@@ -16,7 +17,7 @@ const ItemCartContainer = () => {
         <>
           <div>
             {cart.map(item => <ItemCart key={item.id} item={item} />)}
-            <p>Total: {total}</p>
+            <p>Total: ${total}</p>
             <button onClick={() => navigate("checkout")}>Finalizar Compra</button>
           </div>
         </>

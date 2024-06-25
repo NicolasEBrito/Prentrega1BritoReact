@@ -2,6 +2,7 @@ import React, {useContext, useState} from 'react';
 import Counter from '../Counter/Counter';
 import CartContext from '../../../context/cart/CartContext';
 import { useNavigate } from 'react-router-dom';
+import './ItemDetail.css'
 
 
 const ItemDetail = ({ product }) => {
@@ -14,14 +15,15 @@ const ItemDetail = ({ product }) => {
   }
 
   return (
-    <div>
-      <h2>{product.nombre}</h2>
-      <p>{product.descripción}</p>
-      <p>{product.categoria}</p>
-      <p>Precio:{product.precio}</p>
-      <img src={product.img} alt={product.name} />
+    <div className='detalleProducto'>
+      <h2 className='nombre'>{product.name}</h2>
+      <p>{product.description}</p>
+      <p>Precio:${product.price}</p>
+      <img src={product.img} alt={product.name} className='imagen' />
+      <div className='divCounter'>
       <Counter count={count} handleCount={setCount} stock={product.stock}/>
-      <button onClick={()=> addItemCart({...product, quantity:count})}>Añadir al carrito</button>
+      </div>
+      <button className='boton' onClick={()=> addItemCart({...product, quantity:count})}>Añadir al carrito</button>
     </div>
   );
 };

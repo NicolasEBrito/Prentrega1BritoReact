@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import './Checkout.css'
 
 const Checkout = ({completeOrder}) => {
     const [nameBuyer, setNameBuyer]=useState("")
@@ -15,10 +16,12 @@ const Checkout = ({completeOrder}) => {
     }
   return (
    <form className='checkoutBuyer' onSubmit={(e)=>handleCompleteOrder(e)}>
-    <input type="text" value={nameBuyer} onChange={(e)=>setNameBuyer(e.target.value)}placeholder='nombre' required />
-    <input type="number" value={telBuyer} onChange={(e)=>setTelBuyer(e.target.value)} placeholder='teléfono' required />
-    <input type="email" value={emailBuyer} onChange={(e)=>setEmailBuyer(e.target.value)} placeholder='Email' required />
-    <button type='submit'>Comprar Ahora</button>
+    <input type="text" value={nameBuyer} onChange={(e)=>setNameBuyer(e.target.value)}placeholder='Ingrese su nombre' className='input' required />
+    <input type="number" value={telBuyer} onChange={(e)=>setTelBuyer(e.target.value)} placeholder='Ingrese su teléfono' className='input' required />
+    <input type="email" value={emailBuyer} onChange={(e)=>setEmailBuyer(e.target.value)} placeholder='Ingrese su Email' className='input' required />
+    <div className='divBoton1'>
+    <button type='submit' className='botonCheckout'>Comprar Ahora</button>
+    </div>
    </form>
   )
 }

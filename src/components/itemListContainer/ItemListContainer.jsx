@@ -1,76 +1,20 @@
-/*import React, { useEffect, useState } from 'react';
-import ItemList from '../ItemList/ItemList';
-import { collection, getFirestore, getDocs, query, where } from 'firebase/firestore';
-import styles from './ItemListContainer.module.css';
-import Filtro from '../Filtro/Filtro';
-
-
-const ItemListContainer = () => {
-  const [products, setProducts] = useState([]);
-  const [categorias, setCategorias] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('Todos'); 
-
-  useEffect(() => {
-    const fetchCategorias = async () => {
-    
-      const db = getFirestore();
-      const docsRef = collection(db, "categorías");
-      const querySnapshot = await getDocs(docsRef);
-      setCategorias(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-   
-    };
-
-    fetchCategorias();
-  }, []);
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-     
-      const db = getFirestore();
-      let docsRef = collection(db, "products");
-
-      if (selectedCategory !== 'Todos') {
-        docsRef = query(docsRef, where("categoryId", "==", selectedCategory));
-      }
-
-      const querySnapshop = await getDocs(docsRef);
-      setProducts(querySnapshop.docs.map(doc => ({ id: doc.id, ...doc.data() })));
-  
-    };
-
-    fetchProducts();
-  }, [selectedCategory]);
-
-  const handleCategoriaSeleccionada = (value) => {
-    setSelectedCategory(value); 
-  };
-
-  return (
-    <>
-      <div>
-        <Filtro handleCategoriaSeleccionada={handleCategoriaSeleccionada} categorias={categorias} />
-      </div>
-      <div className={styles.cartContainer}>
-        {products.map(product => <ItemList key={product.id} product={product} />)}
-      </div>
-    </>
-  );
-};
-
-export default ItemListContainer;*/
 import React, { useEffect, useState } from 'react';
-import ItemList from '../ItemList/ItemList';
+import Item from '../Item/Item';
 import { collection, getFirestore, getDocs, query, where } from 'firebase/firestore';
 import styles from './ItemListContainer.module.css';
 import Filtro from '../Filtro/Filtro';
+import Loader from '../Loader/Loader';
 
 const ItemListContainer = () => {
   const [products, setProducts] = useState([]);
   const [categorias, setCategorias] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('Todos'); 
+  const [loader, setLoader]=useState(true)
+
 
   useEffect(() => {
     const fetchCategorias = async () => {
+      setLoader(true)
       const db = getFirestore();
       const docsRef = collection(db, "categorias");
       const querySnapshot = await getDocs(docsRef);
@@ -92,21 +36,24 @@ const ItemListContainer = () => {
       const querySnapshot = await getDocs(docsRef);
       setProducts(querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() })));
     };
-
-    fetchProducts();
+      setLoader(false)
+      fetchProducts();
   }, [selectedCategory]);
 
   const handleCategoriaSeleccionada = (value) => {
     setSelectedCategory(value); 
   };
 
+  if(loader){
+    return <Loader/>
+  }
   return (
     <>
       <div>
         <Filtro handleCategoriaSeleccionada={handleCategoriaSeleccionada} categorías={categorias} />
       </div>
       <div className={styles.cartContainer}>
-        {products.map(product => <ItemList key={product.id} product={product} />)}
+        {products.map(item => <Item key={item.id} item={item} />)}
       </div>
     </>
   );
